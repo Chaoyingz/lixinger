@@ -1,0 +1,6 @@
+[default]
+base_url = "https://open.lixinger.com/api"
+token = "bde64676-0239-4d86-9455-b4096b8c9f57"
+
+
+[testing]
