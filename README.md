@@ -10,8 +10,16 @@ pip install lixinger
 
 ## 用法
 
+设置自己的 Token (配置文件路径: ~/.config/lixinger/settings.toml)
+
+```toml
+[default]
+token = "your token"
+```
+
+使用文档请参考 [理杏仁开放平台](https://www.lixinger.com/open/api/doc)
+
 ```python
-# 使用文档请参考 https://www.lixinger.com/open/api/doc
 from lixinger.api.cn.company.base import get_company
 
 # 获取股票详细信息
