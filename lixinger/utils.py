@@ -24,10 +24,6 @@ def convert_column_list_to_str(column):
 
 
 def get_response_data(response: Response) -> list[dict[str, any]]:
-    try:
-        response.raise_for_status()
-    except Exception as e:
-        raise e
     resp_json = response.json()
     if resp_json.get("code") != 1:
         raise ValueError(f"[{resp_json.get('code')}]{resp_json.get('error')}")
