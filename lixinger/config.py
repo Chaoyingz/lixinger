@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import os
 import pathlib
 
@@ -40,7 +42,7 @@ def get_validators() -> list[Validator]:
     """
     settings_types = vars(TypedDynaconf)["__annotations__"]
     return [
-        Validator(key, cast=settings_cast_map.get(key, type_))
+        Validator(key, cast=cast(settings_cast_map.get(key, type_)))
         for key, type_ in settings_types.items()
     ]
 

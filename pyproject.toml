@@ -7,7 +7,7 @@ dev = [
 
 [project]
 name = "lixinger"
-version = "0.1.1"
+version = "0.1.2"
 description = "Lixinger SDK for Python (Unofficial)"
 authors = [
     {name = "Chaoying", email = "chaoying2022@gmail.com"},
@@ -18,9 +18,19 @@ dependencies = [
     "requests>=2.29.0",
     "dynaconf>=3.1.12",
 ]
-requires-python = ">=3.10"
+requires-python = ">=3.7"
 readme = "README.md"
 license = {text = "MIT"}
+keywords = ["github", "storage", "pandas"]
+classifiers = [
+    "Topic :: Software Development :: Build Tools",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
 
 [build-system]
 requires = ["pdm-backend"]
