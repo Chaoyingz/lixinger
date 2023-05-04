@@ -21,7 +21,7 @@ dependencies = [
 requires-python = ">=3.7"
 readme = "README.md"
 license = {text = "MIT"}
-keywords = ["github", "storage", "pandas"]
+keywords = ["lixinger"]
 classifiers = [
     "Topic :: Software Development :: Build Tools",
     "Programming Language :: Python :: 3",
