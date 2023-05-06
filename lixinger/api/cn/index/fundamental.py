@@ -17,15 +17,14 @@ class Output(pa.DataFrameModel):
 @validate_arguments
 @pa.check_types
 def get_index_fundamental(
-    *,
+    stock_codes: list[str],
+    metrics_list: list[str],
     date: str | None = None,
     start_date: str | None = None,
     end_date: str | None = None,
     adjust_forward_date: str | None = None,
     adjust_backward_date: str | None = None,
     limit: int | None = None,
-    stock_codes: list[str],
-    metrics_list: list[str],
 ) -> pa.typing.DataFrame[Output]:
     """获取基本面数据，如PE、PB等.
 

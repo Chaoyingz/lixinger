@@ -27,7 +27,6 @@ class Output(pa.DataFrameModel):
 @validate_arguments
 @pa.check_types
 def get_company(
-    *,
     fs_type: Literal[
         "non_financial", "bank", "insurance", "security", "other_financial"
     ]

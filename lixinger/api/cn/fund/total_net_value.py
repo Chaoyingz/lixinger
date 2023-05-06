@@ -17,11 +17,10 @@ class Output(pa.DataFrameModel):
 @validate_arguments
 @pa.check_types
 def get_total_net_value(
-    *,
     start_date: str,
+    stock_code: str,
     end_date: str | None = None,
     limit: int | None = None,
-    stock_code: str,
 ) -> pa.typing.DataFrame[Output]:
     """获取基金累计净值数据
 

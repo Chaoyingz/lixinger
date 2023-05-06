@@ -19,11 +19,10 @@ class Output(pa.DataFrameModel):
 @validate_arguments
 @pa.check_types
 def get_equity_change(
-    *,
     start_date: str,
+    stock_code: str,
     end_date: str | None = None,
     limit: int | None = None,
-    stock_code: str,
 ) -> pa.typing.DataFrame[Output]:
     """获取股本变动数据.
 
