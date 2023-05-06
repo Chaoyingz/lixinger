@@ -10,6 +10,7 @@ from lixinger.utils import get_response_df
 
 
 class Output(pa.DataFrameModel):
+    date: pa.typing.Series[pa.typing.DateTime]
     change_reason: pa.typing.Series[str]
     capitalization: pa.typing.Series[int]
     outstanding_shares_a: pa.typing.Series[int]
