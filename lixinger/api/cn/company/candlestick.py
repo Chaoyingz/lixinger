@@ -8,7 +8,7 @@ import requests
 from pydantic import validate_arguments
 
 from lixinger.config import settings
-from lixinger.utils import get_response_df
+from lixinger.utils import adjust_request_date_range, get_response_df
 
 
 class Output(pa.DataFrameModel):
@@ -24,6 +24,7 @@ class Output(pa.DataFrameModel):
 
 @validate_arguments
 @pa.check_types
+@adjust_request_date_range
 def get_candlestick(
     type_: Literal["ex_rights", "lxr_fc_rights", "fc_rights", "bc_rights"],
     start_date: str,

@@ -6,7 +6,7 @@ import requests
 from pydantic import validate_arguments
 
 from lixinger.config import settings
-from lixinger.utils import get_response_df
+from lixinger.utils import adjust_request_date_range, get_response_df
 
 
 class Output(pa.DataFrameModel):
@@ -16,6 +16,7 @@ class Output(pa.DataFrameModel):
 
 @validate_arguments
 @pa.check_types
+@adjust_request_date_range
 def get_total_net_value(
     start_date: str,
     stock_code: str,
