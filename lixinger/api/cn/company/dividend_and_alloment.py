@@ -51,7 +51,7 @@ def get_dividend_and_alloment(
         f"{settings.base_url}/cn/company/dividend-and-alloment",
         json=payload,
     )
-    df = get_response_df(response)
+    df = get_response_df(response, Output)
     df["date"] = pd.to_datetime(df["date"]).dt.tz_localize(None) + pd.Timedelta("8h")
     df["register_date"] = pd.to_datetime(df["register_date"]).dt.tz_localize(None)
     df["ex_date"] = pd.to_datetime(df["ex_date"]).dt.tz_localize(None) + pd.Timedelta(

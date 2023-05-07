@@ -47,5 +47,5 @@ def get_senior_executive_shares_change(
         f"{settings.base_url}/cn/company/senior-executive-shares-change",
         json=payload,
     )
-    df = get_response_df(response)
+    df = get_response_df(response, Output)
     return df

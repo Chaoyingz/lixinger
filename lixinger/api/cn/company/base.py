@@ -55,7 +55,7 @@ def get_company(
         f"{settings.base_url}/cn/company",
         json=payload,
     )
-    df = get_response_df(response)
+    df = get_response_df(response, Output)
     df["ipo_date"] = pd.to_datetime(df["ipo_date"]).dt.tz_localize(None)
     if "delisted_date" in df.columns:
         df["delisted_date"] = pd.to_datetime(df["delisted_date"]).dt.tz_localize(None)

@@ -44,6 +44,6 @@ def get_equity_change(
         f"{settings.base_url}/cn/company/equity-change",
         json=payload,
     )
-    df = get_response_df(response)
+    df = get_response_df(response, Output)
     df["date"] = pd.to_datetime(df["date"]).dt.tz_localize(None)
     return df

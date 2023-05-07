@@ -2,9 +2,11 @@ from __future__ import annotations
 
 import re
 from functools import wraps
+from typing import Type
 
 import numpy as np
 import pandas as pd
+import pandera as pa
 from requests import Response
 
 
@@ -37,10 +39,16 @@ def get_response_data(response: Response) -> list[dict[str, any]]:
     return resp_json["data"]
 
 
-def get_response_df(response: Response) -> pd.DataFrame:
+def get_response_df(
+    response: Response, output: Type[pa.DataFrameModel]
+) -> pd.DataFrame:
     """Get response dataframe from response."""
     data = get_response_data(response)
-    df = pd.json_normalize(data)
+    if not data:
+        dtypes = {k: str(v) for k, v in output.to_schema().dtypes.items()}
+        df = pd.DataFrame(columns=[*dtypes]).astype(dtypes)
+    else:
+        df = pd.json_normalize(data)
     df = set_column_snake_case(df)
     return df
 

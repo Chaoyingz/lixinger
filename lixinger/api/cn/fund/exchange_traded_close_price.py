@@ -44,6 +44,6 @@ def get_exchange_traded_close_price(
         f"{settings.base_url}/cn/fund/exchange-traded-close-price",
         json=payload,
     )
-    df = get_response_df(response)
+    df = get_response_df(response, Output)
     df["date"] = pd.to_datetime(df["date"]).dt.tz_localize(None)
     return df

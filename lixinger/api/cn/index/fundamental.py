@@ -52,7 +52,7 @@ def get_index_fundamental(
         f"{settings.base_url}/cn/index/fundamental",
         json=payload,
     )
-    df = get_response_df(response)
+    df = get_response_df(response, Output)
     df["date"] = pd.to_datetime(df["date"]).dt.tz_localize(None)
     df.sort_values(by=["date", "stock_code"], inplace=True)
     return df
