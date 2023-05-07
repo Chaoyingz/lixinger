@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from typing import Literal
-
 import pandas as pd
 import pandera as pa
 import requests
@@ -17,26 +15,21 @@ class Output(pa.DataFrameModel):
     high: pa.typing.Series[float]
     low: pa.typing.Series[float]
     close: pa.typing.Series[float]
-    volume: pa.typing.Series[int]
-    amount: pa.typing.Series[int]
-    change: pa.typing.Series[float]
 
 
 @validate_arguments
 @pa.check_types
-def get_candlestick(
-    type_: Literal["normal", "total_return"],
+def get_exchange_traded_close_price(
     start_date: str,
     stock_code: str,
     end_date: str | None = None,
     limit: int | None = None,
 ) -> pa.typing.DataFrame[Output]:
-    """获取K线数据.
+    """场内基金收盘价数据.
 
-    参考文档: https://www.lixinger.com/open/api/doc?api-key=cn/index/candlestick
+    参考文档: https://www.lixinger.com/open/api/doc?api-key=cn/fund/exchange-traded-close-price
     """
     payload = {
-        "type": type_,
         "token": settings.token,
         "startDate": start_date,
         "stockCode": stock_code,
@@ -47,7 +40,7 @@ def get_candlestick(
         payload["limit"] = limit
 
     response = requests.post(
-        f"{settings.base_url}/cn/index/candlestick",
+        f"{settings.base_url}/cn/fund/exchange-traded-close-price",
         json=payload,
     )
     df = get_response_df(response)
