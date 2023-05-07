@@ -83,7 +83,8 @@ def adjust_request_date_range(func: callable) -> callable:
                 if limit <= 0:
                     break
                 kwargs["limit"] = limit
-        dfs.sort_values(by="date", inplace=True)
+        if "date" in dfs.columns:
+            dfs.sort_values(by="date", inplace=True)
         return dfs
 
     return wrapper
