@@ -58,10 +58,10 @@ def get_dividend_and_alloment(
         "8h"
     )
     if "content" not in df.columns:
-        df["content"] = np.nan
+        df["content"] = np.NaN
     if "payment_date" not in df.columns:
-        df["payment_date"] = np.nan
+        df["payment_date"] = np.NaN
     df["payment_date"] = pd.to_datetime(df["payment_date"]).dt.tz_localize(None)
     if "split_ratio" not in df.columns:
-        df["split_ratio"] = np.nan
+        df["split_ratio"] = np.NaN
     return df

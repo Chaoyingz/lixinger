@@ -28,7 +28,7 @@ def convert_column_list_to_str(column: list[str]) -> str:
     try:
         return ",".join(map(str, column))
     except TypeError:
-        return np.nan
+        return np.NaN
 
 
 def get_response_data(response: Response) -> list[dict[str, any]]:
@@ -44,12 +44,19 @@ def get_response_df(
 ) -> pd.DataFrame:
     """Get response dataframe from response."""
     data = get_response_data(response)
+    dtypes = {k: str(v) for k, v in output.to_schema().dtypes.items()}
     if not data:
-        dtypes = {k: str(v) for k, v in output.to_schema().dtypes.items()}
         df = pd.DataFrame(columns=[*dtypes]).astype(dtypes)
     else:
         df = pd.json_normalize(data)
-    df = set_column_snake_case(df)
+        df = set_column_snake_case(df)
+        missing_columns = set(dtypes.keys()) - set(df.columns)
+        if missing_columns:
+            df[list(missing_columns)] = np.NaN
+        df = df.astype(dtypes, errors="ignore")
+        for col, dtype in dtypes.items():
+            if dtype == "datetime64[ns]":
+                df[col] = pd.to_datetime(df[col]).dt.tz_localize(None)
     return df
 
 
