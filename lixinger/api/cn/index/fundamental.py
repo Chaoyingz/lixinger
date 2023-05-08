@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import pandas as pd
 import pandera as pa
 import requests
 from pydantic import validate_arguments
@@ -53,6 +52,4 @@ def get_index_fundamental(
         json=payload,
     )
     df = get_response_df(response, Output)
-    df["date"] = pd.to_datetime(df["date"]).dt.tz_localize(None)
-    df.sort_values(by=["date", "stock_code"], inplace=True)
     return df

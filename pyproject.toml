@@ -8,7 +8,7 @@ dev = [
 
 [project]
 name = "lixinger"
-version = "0.1.4"
+version = "0.1.5"
 description = "Lixinger SDK for Python (Unofficial)"
 authors = [
     {name = "Chaoying", email = "chaoying2022@gmail.com"},

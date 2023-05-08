@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import numpy as np
 import pandas as pd
 import pandera as pa
 import requests
@@ -53,15 +52,7 @@ def get_dividend_and_alloment(
     )
     df = get_response_df(response, Output)
     df["date"] = pd.to_datetime(df["date"]).dt.tz_localize(None) + pd.Timedelta("8h")
-    df["register_date"] = pd.to_datetime(df["register_date"]).dt.tz_localize(None)
     df["ex_date"] = pd.to_datetime(df["ex_date"]).dt.tz_localize(None) + pd.Timedelta(
         "8h"
     )
-    if "content" not in df.columns:
-        df["content"] = np.NaN
-    if "payment_date" not in df.columns:
-        df["payment_date"] = np.NaN
-    df["payment_date"] = pd.to_datetime(df["payment_date"]).dt.tz_localize(None)
-    if "split_ratio" not in df.columns:
-        df["split_ratio"] = np.NaN
     return df

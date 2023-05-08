@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from typing import Literal, Optional
 
-import pandas as pd
 import pandera as pa
 import requests
 from pydantic import validate_arguments
@@ -56,9 +55,6 @@ def get_company(
         json=payload,
     )
     df = get_response_df(response, Output)
-    df["ipo_date"] = pd.to_datetime(df["ipo_date"]).dt.tz_localize(None)
-    if "delisted_date" in df.columns:
-        df["delisted_date"] = pd.to_datetime(df["delisted_date"]).dt.tz_localize(None)
 
     if "mutual_markets" in df.columns:
         df["mutual_markets"] = [

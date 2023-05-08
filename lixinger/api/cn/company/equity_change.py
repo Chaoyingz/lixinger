@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import pandas as pd
 import pandera as pa
 import requests
 from pydantic import validate_arguments
@@ -45,5 +44,4 @@ def get_equity_change(
         json=payload,
     )
     df = get_response_df(response, Output)
-    df["date"] = pd.to_datetime(df["date"]).dt.tz_localize(None)
     return df
