@@ -61,6 +61,7 @@ def load_settings(
         environments=True,
         validators=get_validators(),
         validate=True,
+        envvar_prefix="LIXINGER",
     )
     return default_settings
 
