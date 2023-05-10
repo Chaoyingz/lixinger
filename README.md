@@ -37,6 +37,8 @@ token = "你的 token"
 ### 调用 API
 使用文档请参考 [理杏仁开放平台](https://www.lixinger.com/open/api/doc)
 
+方法导入路径可以根据文档中的请求 URL 得出，例如下面代码中对应的请求 URL 为 `/api/cn/company` 则把 `/` 换成 `.` 即可.
+
 ```python
 from lixinger.api.cn.company.base import get_company
 
