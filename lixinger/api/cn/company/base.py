@@ -4,10 +4,9 @@ from typing import Literal, Optional
 
 import pandera as pa
 import requests
-from pydantic import validate_arguments
 
 from lixinger.config import settings
-from lixinger.utils import convert_column_list_to_str, get_response_df
+from lixinger.utils import api, convert_column_list_to_str, get_response_df
 
 
 class Output(pa.DataFrameModel):
@@ -23,8 +22,7 @@ class Output(pa.DataFrameModel):
     )
 
 
-@validate_arguments
-@pa.check_types
+@api
 def get_company(
     fs_type: Literal[
         "non_financial", "bank", "insurance", "security", "other_financial"

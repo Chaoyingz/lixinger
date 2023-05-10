@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import os
 import pathlib
+from typing import Callable
 
 from dynaconf import Dynaconf, Validator
 
@@ -20,10 +21,10 @@ USER_SETTINGS_PATH: pathlib.Path = (
 settings_cast_map = {}
 
 
-def cast(v: str) -> callable:
+def cast(v: str) -> Callable:
     """Decorator to register cast function for a setting."""
 
-    def decorator(func) -> callable:
+    def decorator(func) -> Callable:
         settings_cast_map[v] = func
         return func
 

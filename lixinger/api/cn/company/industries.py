@@ -2,10 +2,9 @@ from __future__ import annotations
 
 import pandera as pa
 import requests
-from pydantic import validate_arguments
 
 from lixinger.config import settings
-from lixinger.utils import get_response_df
+from lixinger.utils import api, get_response_df
 
 
 class Output(pa.DataFrameModel):
@@ -14,8 +13,7 @@ class Output(pa.DataFrameModel):
     source: pa.typing.Series[str]
 
 
-@validate_arguments
-@pa.check_types
+@api
 def get_industries(
     stock_code: str,
     date: str | None = None,

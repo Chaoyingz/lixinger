@@ -3,10 +3,9 @@ from __future__ import annotations
 import pandas as pd
 import pandera as pa
 import requests
-from pydantic import validate_arguments
 
 from lixinger.config import settings
-from lixinger.utils import adjust_request_date_range, get_response_df
+from lixinger.utils import api, get_response_df
 
 
 class Output(pa.DataFrameModel):
@@ -23,9 +22,7 @@ class Output(pa.DataFrameModel):
     split_ratio: pa.typing.Series[float] = pa.Field(nullable=True)
 
 
-@validate_arguments
-@pa.check_types
-@adjust_request_date_range
+@api
 def get_dividend_and_alloment(
     start_date: str,
     stock_code: str,
