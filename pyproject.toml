@@ -31,6 +31,9 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
 ]
+[project.urls]
+Homepage = "https://github.com/Chaoyingz/lixinger"
+Repository = "https://github.com/Chaoyingz/lixinger"
 
 [build-system]
 requires = ["pdm-backend"]
