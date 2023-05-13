@@ -165,7 +165,6 @@ def api(func: Callable | None = None, *, maxsize=16) -> Callable:
     def wrapper(_func: Callable) -> Callable:
         @hashable_cache(maxsize=maxsize)
         @validate_arguments
-        @pa.check_types
         @wraps(_func)
         def _api(*args: any, **kwargs: any) -> Callable:
             parameters = inspect.signature(_func).parameters
