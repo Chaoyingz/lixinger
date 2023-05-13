@@ -12,12 +12,32 @@ class Output(pa.DataFrameModel):
     stock_code: pa.typing.Series[str]
     area_code: pa.typing.Series[str]
     market: pa.typing.Series[str]
-    source: pa.typing.Series[str]
+    source: pa.typing.Series[str] = pa.Field(isin=["csi", "cni", "hsi", "usi", "lxri"])
     currency: pa.typing.Series[str]
-    series: pa.typing.Series[str]
+    series: pa.typing.Series[str] = pa.Field(
+        isin=["size", "sector", "style", "thematic", "strategy"]
+    )
     launch_date: pa.typing.Series[pa.typing.DateTime] = pa.Field(nullable=True)
-    rebalancing_frequency: pa.typing.Series[str]
-    caculation_method: pa.typing.Series[str]
+    rebalancing_frequency: pa.typing.Series[str] = pa.Field(
+        isin=[
+            "annually",
+            "semi-annually",
+            "quarterly",
+            "monthly",
+            "irregularly",
+            "aperiodically",
+        ]
+    )
+    caculation_method: pa.typing.Series[str] = pa.Field(
+        isin=[
+            "paasche",
+            "grading_weighted",
+            "dividend_grading",
+            "equal",
+            "free_float_cap",
+            "modified_cap_weighted",
+        ]
+    )
 
 
 @api
