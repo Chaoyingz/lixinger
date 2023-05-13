@@ -3,8 +3,8 @@ from __future__ import annotations
 from typing import Literal, Optional
 
 import pandera as pa
-import requests
 
+from lixinger import client
 from lixinger.config import settings
 from lixinger.utils import api, convert_column_list_to_str, get_response_df
 
@@ -48,7 +48,7 @@ def get_company(
     if include_delisted is not None:
         payload["includeDelisted"] = include_delisted
 
-    response = requests.post(
+    response = client.post(
         f"{settings.base_url}/cn/company",
         json=payload,
     )

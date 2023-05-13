@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 import pandera as pa
-import requests
 
+from lixinger import client
 from lixinger.config import settings
 from lixinger.utils import api, get_response_df
 
@@ -50,7 +50,7 @@ def get_index(
     """
     payload = {"token": settings.token, "stock_codes": stock_codes}
 
-    response = requests.post(
+    response = client.post(
         f"{settings.base_url}/cn/index",
         json=payload,
     )

@@ -2,8 +2,8 @@ from __future__ import annotations
 
 import pandas as pd
 import pandera as pa
-import requests
 
+from lixinger import client
 from lixinger.config import settings
 from lixinger.utils import api, get_response_df, set_column_snake_case
 
@@ -30,7 +30,7 @@ def get_index_constituents(
     }
     if stock_codes is not None:
         payload["stockCodes"] = stock_codes
-    response = requests.post(
+    response = client.post(
         f"{settings.base_url}/cn/index/constituents",
         json=payload,
     )

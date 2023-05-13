@@ -3,8 +3,8 @@ from __future__ import annotations
 from typing import Literal
 
 import pandera as pa
-import requests
 
+from lixinger import client
 from lixinger.config import settings
 from lixinger.utils import api, get_response_df
 
@@ -33,7 +33,7 @@ def get_index_drawdown(
     }
     if end_date is not None:
         payload["endDate"] = end_date
-    response = requests.post(
+    response = client.post(
         f"{settings.base_url}/cn/index/drawdown",
         json=payload,
     )

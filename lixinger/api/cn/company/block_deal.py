@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 import pandera as pa
-import requests
 
+from lixinger import client
 from lixinger.config import settings
 from lixinger.utils import api, get_response_df
 
@@ -38,7 +38,7 @@ def get_block_deal(
     if limit is not None:
         payload["limit"] = limit
 
-    response = requests.post(
+    response = client.post(
         f"{settings.base_url}/cn/company/block-deal",
         json=payload,
     )

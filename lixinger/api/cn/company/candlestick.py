@@ -3,8 +3,8 @@ from __future__ import annotations
 from typing import Literal
 
 import pandera as pa
-import requests
 
+from lixinger import client
 from lixinger.config import settings
 from lixinger.utils import api, get_response_df
 
@@ -49,7 +49,7 @@ def get_candlestick(
     if adjust_backward_date is not None:
         payload["adjustBackwardDate"] = adjust_backward_date
 
-    response = requests.post(
+    response = client.post(
         f"{settings.base_url}/cn/company/candlestick",
         json=payload,
     )

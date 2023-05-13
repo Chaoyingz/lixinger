@@ -2,8 +2,8 @@ from __future__ import annotations
 
 import pandas as pd
 import pandera as pa
-import requests
 
+from lixinger import client
 from lixinger.config import settings
 from lixinger.utils import api, get_response_df
 
@@ -43,7 +43,7 @@ def get_dividend_and_alloment(
     if limit is not None:
         payload["limit"] = limit
 
-    response = requests.post(
+    response = client.post(
         f"{settings.base_url}/cn/company/dividend-and-alloment",
         json=payload,
     )
