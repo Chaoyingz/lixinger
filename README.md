@@ -24,8 +24,15 @@ Token 获取地址为 [https://www.lixinger.com/open/api/token](https://www.lixi
 
 #### 方式 1: 通过环境变量来设置 Token
 
+##### linux:
 ```bash
 export LIXINGER_TOKEN="你的 token"
+```
+
+
+##### windows:
+```bash
+set LIXINGER_TOKEN="你的 token"
 ```
 
 #### 方式 2: 通过配置文件来设置 Token
