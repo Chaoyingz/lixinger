@@ -18,31 +18,9 @@ pip install lixinger
 
 ## 用法
 
-### 设置 Token
+### 获取 Token
 
 Token 获取地址为 [https://www.lixinger.com/open/api/token](https://www.lixinger.com/open/api/token).
-
-#### 方式 1: 通过环境变量来设置 Token
-
-##### linux:
-```bash
-export LIXINGER_TOKEN="你的 token"
-```
-
-
-##### windows:
-```bash
-set LIXINGER_TOKEN="你的 token"
-```
-
-#### 方式 2: 通过配置文件来设置 Token
-
-打开配置文件(路径为 ~/.config/lixinger/settings.toml), 并添加以下内容设置自己的 Token.
-
-```toml
-[default]
-token = "你的 token"
-```
 
 ### 调用 API
 
@@ -51,7 +29,11 @@ token = "你的 token"
 方法导入路径可以根据文档中的请求 URL 得出, 例如下面代码中对应的请求 URL 为 `/api/cn/company` 则把 `/` 换成 `.` 即可.
 
 ```python
+from lixinger.utils import set_token
 from lixinger.api.cn.company.base import get_company
+
+# 设置 Token
+set_token("your_token")
 
 # 获取股票详细信息
 company = get_company(stock_codes=["600519"])
