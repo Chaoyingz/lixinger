@@ -14,6 +14,8 @@ import six
 from pydantic import validate_arguments
 from requests import Response
 
+from lixinger.config import settings
+
 
 def camel_case_to_snake_case(name: str) -> str:
     """Convert camel case to snake case."""
@@ -177,3 +179,7 @@ def api(func: Callable | None = None, *, maxsize=16) -> Callable:
     if func is not None:
         return wrapper(func)
     return wrapper
+
+
+def set_token(token: str) -> None:
+    settings.token = token
